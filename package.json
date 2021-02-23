@@ -16,13 +16,16 @@
     "body-parser": "1.18.3",
     "consign": "0.1.6",
     "express": "4.16.4",
-    "npm": "^7.5.4"
+    "knex": "0.15.2",
+    "knex-logger": "^0.1.0",
+    "npm": "^7.5.4",
+    "pg": "8.5.1"
   },
   "devDependencies": {
     "eslint": "^7.20.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
-    "jest": "23.6.0",
+    "jest": "^23.6.0",
     "supertest": "3.3.0"
   }
 }
