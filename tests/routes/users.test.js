@@ -9,8 +9,9 @@ test('Listar todos os usuários', () => {
     });
 });
 
+const mail = `${Date.now()}@mail.com`;
+
 test('Inserir novo usuário', () => {
-  const mail = `${Date.now()}@mail.com`;
   return request(app).post('/users')
     .send({
       name: 'Walter Mitty',
@@ -24,7 +25,6 @@ test('Inserir novo usuário', () => {
 });
 
 test('Não inserir usuário sem nome', () => {
-  const mail = `${Date.now()}@mail.com`;
   return request(app).post('/users')
     .send({
       mail,
@@ -58,4 +58,17 @@ test('Não inserir usuário sem senha', (done) => {
       done();
     })
     .catch((err) => done.fail(err));
+});
+
+test('Não inserir um usuário com e-mail já cadastrado', () => {
+  return request(app).post('/users')
+    .send({
+      name: 'Walter Mitty',
+      mail,
+      password: 'password',
+    })
+    .then((res) => {
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe('Já existe um usuário com este e-mail');
+    });
 });
